@@ -5,8 +5,11 @@ import json
 from groq import Groq
 from .pdf_parser import split_text_into_chunks
 from ..core.config import settings
+from dotenv import load_dotenv
 
-client = Groq(api_key='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')
+load_dotenv()
+
+client = Groq(api_key=os.getenv("GROQ_API_KEY",""))
 
 def generate_structured_summary(full_text: str) -> dict:
     """

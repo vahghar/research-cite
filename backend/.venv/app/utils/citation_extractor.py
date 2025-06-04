@@ -1,12 +1,16 @@
 # app/utils/citation_extractor.py
 
 import re
+import os
 import json
 import bibtexparser
 from groq import Groq
 from ..core.config import settings
+from dotenv import load_dotenv
 
-client = Groq(api_key='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')
+load_dotenv()
+
+client = Groq(api_key=os.getenv("GROQ_API_KEY",""))
 
 def extract_reference_section(full_text: str) -> str:
     """
