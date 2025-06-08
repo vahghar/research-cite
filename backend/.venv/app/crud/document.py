@@ -19,6 +19,9 @@ def create_document(db: Session, owner_id: int, file_path: str, original_filenam
 def get_document(db: Session, document_id: int):
     return db.query(Document).filter(Document.id == document_id).first()
 
+def get_documents_by_owner(db: Session, owner_id: int):
+    return db.query(Document).filter(Document.owner_id == owner_id).all()
+
 def update_document_status(db: Session, document_id: int, status: DocumentStatus, progress: int = None):
     db_doc = get_document(db, document_id)
     if not db_doc:

@@ -17,3 +17,10 @@ def create_summary(db: Session, document_id: int, introduction: str, methods: st
 
 def get_summary_by_document(db: Session, document_id: int):
     return db.query(Summary).filter(Summary.document_id == document_id).first()
+
+def delete_summary(db: Session, summary_id: int):
+    summary = db.query(Summary).filter(Summary.id == summary_id).first()
+    if summary:
+        db.delete(summary)
+        db.commit()
+

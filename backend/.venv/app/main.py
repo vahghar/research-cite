@@ -1,6 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 from app.api.routes import router as document_router, auth_router
+from fastapi.middleware.cors import CORSMiddleware
 # If you have an auth router (e.g. for /auth/token), import and include it here:
 # from app.api.auth import auth_router
 
@@ -16,6 +17,14 @@ app = FastAPI(
 # Include the document‐processing router under /documents
 app.include_router(document_router)
 app.include_router(auth_router)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # (Optional) If you create an auth router later:
 # app.include_router(auth_router, prefix="/auth", tags=["auth"])

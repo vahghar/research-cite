@@ -93,16 +93,13 @@ async def upload_document(
         traceback.print_exc() # Print full traceback to console
         raise HTTPException(status_code=500, detail="Error processing document.")
 
-@router.get("/{document_id}/status", response_model=DocumentStatusResponse)
-def get_document_status(document_id: int, db: Session = Depends(get_db), current_user=Depends(get_current_user)):
-    db_doc = crud_doc.get_document(db, document_id)
-    if not db_doc or db_doc.owner_id != current_user.id:
-        raise HTTPException(status_code=404, detail="Document not found.")
-    return DocumentStatusResponse(
-        id=db_doc.id,
-        status=db_doc.status,
-        progress=db_doc.progress
-    )
+
+
+@router.get("/", response_model=List[DocumentRead])
+def get_all_documents(db: Session = Depends(get_db), current_user=Depends(get_current_user)):
+    documents = crud_doc.get_documents_by_owner(db, owner_id=current_user.id)
+    return documents
+
 
 @router.get("/{document_id}/summary", response_model=SummaryRead)
 def fetch_summary(document_id: int, db: Session = Depends(get_db), current_user=Depends(get_current_user)):
@@ -145,3 +142,17 @@ def push_to_zotero(document_id: int, db: Session = Depends(get_db), current_user
         if success:
             added_count += 1
     return {"success": True, "added_count": added_count}
+
+@router.delete("/{document_id}/summary", status_code=status.HTTP_204_NO_CONTENT)
+def delete_summary(document_id: int, db: Session = Depends(get_db), current_user=Depends(get_current_user)):
+    db_doc = crud_doc.get_document(db, document_id)
+    if not db_doc or db_doc.owner_id != current_user.id:
+        raise HTTPException(status_code=404, detail="Document not found.")
+    if db_doc.status != DocumentStatus.COMPLETED:
+        raise HTTPException(status_code=400, detail="Document is not yet processed.")
+    db_summary = crud_sum.get_summary_by_document(db, document_id)
+    if not db_summary:
+        raise HTTPException(status_code=404, detail="Summary not found.")
+    
+    crud_sum.delete_summary(db, db_summary.id)
+    return JSONResponse(status_code=status.HTTP_204_NO_CONTENT, content={})
