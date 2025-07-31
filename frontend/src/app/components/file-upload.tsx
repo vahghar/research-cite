@@ -34,45 +34,12 @@ export function FileUploadSection({ onUploadComplete }: FileUploadSectionProps) 
         setIsDragOver(false)
     }, [])
 
-    const handleFiles = useCallback((fileList: File[]) => {
-        const pdfs = fileList.filter((f) => f.type === "application/pdf")
-        if (pdfs.length !== fileList.length) {
-            console.warn("Some files were ignored: only PDFs allowed.")
-        }
-
-        pdfs.forEach((file) => {
-            const tempId = crypto.randomUUID()
-            const newFile: UploadedFile = {
-                id: tempId,
-                name: file.name,
-                size: file.size,
-                status: "uploading",
-                progress: 0,
-            }
-            setFiles((prev) => [...prev, newFile])
-            uploadFileToServer(file, tempId)
-        })
-    }, [])
-
-    const handleDrop = useCallback((e: React.DragEvent) => {
-        e.preventDefault()
-        setIsDragOver(false)
-        const dropped = Array.from(e.dataTransfer.files)
-        handleFiles(dropped)
-    }, [handleFiles])
-
-    const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        if (!e.target.files) return
-        handleFiles(Array.from(e.target.files))
-    }, [handleFiles])
-
-
-    const uploadFileToServer = async (file: File, tempId: string) => {
+    const uploadFileToServer = useCallback(async (file: File, tempId: string) => {
         const formData = new FormData()
         formData.append("file", file)
-
+    
         const token = localStorage.getItem("access_token")
-
+    
         try {
             const resp = await fetch("http://localhost:8000/documents", {
                 method: "POST",
@@ -96,17 +63,53 @@ export function FileUploadSection({ onUploadComplete }: FileUploadSectionProps) 
                         : f
                 )
             )
-        } catch (err: any) {
+        } catch (err: unknown) {
+            const errorMessage = err instanceof Error ? err.message : "Unknown error"
             console.error(err)
             setFiles((prev) =>
                 prev.map((f) =>
                     f.id === tempId
-                        ? { ...f, status: "error", progress: 0, error: err.message }
+                        ? { ...f, status: "error", progress: 0, error: errorMessage }
                         : f
                 )
             )
         }
-    }
+    }, [onUploadComplete])
+    
+
+    const handleFiles = useCallback((fileList: File[]) => {
+        const pdfs = fileList.filter((f) => f.type === "application/pdf")
+        if (pdfs.length !== fileList.length) {
+            console.warn("Some files were ignored: only PDFs allowed.")
+        }
+
+        pdfs.forEach((file) => {
+            const tempId = crypto.randomUUID()
+            const newFile: UploadedFile = {
+                id: tempId,
+                name: file.name,
+                size: file.size,
+                status: "uploading",
+                progress: 0,
+            }
+            setFiles((prev) => [...prev, newFile])
+            uploadFileToServer(file, tempId)
+        })
+    }, [uploadFileToServer])
+
+    const handleDrop = useCallback((e: React.DragEvent) => {
+        e.preventDefault()
+        setIsDragOver(false)
+        const dropped = Array.from(e.dataTransfer.files)
+        handleFiles(dropped)
+    }, [handleFiles])
+
+    const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files) return
+        handleFiles(Array.from(e.target.files))
+    }, [handleFiles])
+
+
 
     const removeFile = useCallback((id: string) => {
         setFiles((prev) => prev.filter((f) => f.id !== id))

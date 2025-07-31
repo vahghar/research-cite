@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { Upload, Brain, FileCheck, GraduationCap } from "lucide-react"
+import { Upload, Brain, FileCheck} from "lucide-react"
 
 const steps = [
   {

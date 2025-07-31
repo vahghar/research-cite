@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { FileText, LinkIcon, Quote, Zap, Shield, Clock, GraduationCap, BookOpen } from "lucide-react"
+import { FileText, LinkIcon, Quote, Zap, Shield, Clock} from "lucide-react"
 
 const features = [
   {

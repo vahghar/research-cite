@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
-import { Copy, Download, Share, BookOpen, Quote, Users, Baby, Sparkles } from "lucide-react"
+import { Download, BookOpen, Quote, Baby, Sparkles } from "lucide-react"
 import { Alert } from "@/components/ui/alert"
 
 interface SummaryRead {
@@ -136,7 +136,7 @@ export function CurrentSummarySection({ documentId }: { documentId: number }) {
             </CardHeader>
 
             <CardContent>
-                <Tabs value={tab} onValueChange={(v) => setTab(v as any)}>
+                <Tabs value={tab} onValueChange={(v) => setTab(v as "introduction" | "methods" | "results" | "conclusion" | "eli5")}>
                     <TabsList className="grid grid-cols-5">
                         <TabsTrigger value="introduction">Introduction</TabsTrigger>
                         <TabsTrigger value="methods">Methods</TabsTrigger>
@@ -193,7 +193,7 @@ export function CurrentSummarySection({ documentId }: { documentId: number }) {
                             <div className="flex items-center justify-between mb-4">
                                 <h4 className="flex items-center space-x-2">
                                     <Baby className="h-4 w-4" />
-                                    <span>Explain Like I'm 5</span>
+                                    <span>Explain Like I&apos;m 5</span>
                                 </h4>
                                 {!data.eli5_summary && (
                                     <Button 

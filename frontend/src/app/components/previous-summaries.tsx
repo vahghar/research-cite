@@ -1,4 +1,6 @@
 "use client"
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
@@ -194,7 +196,7 @@ export function PreviousSummariesSection() {
                             variant="ghost" 
                             size="sm" 
                             className="h-8 w-8 p-0"
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={event => event.stopPropagation()}
                           >
                             <MoreVertical className="h-4 w-4" />
                           </Button>

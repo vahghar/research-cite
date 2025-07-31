@@ -5,7 +5,6 @@ import { useParams, useRouter } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { ArrowLeft, FileText, Calendar, User, ExternalLink, Download, Share2 } from "lucide-react"
@@ -123,7 +122,7 @@ export default function SummaryDetailPage() {
         setError("Failed to generate ELI5 summary")
       }
     } catch (err) {
-      setError("Failed to generate ELI5 summary")
+      console.error("Error generating ELI5 summary:", err)
     }
   }
 
@@ -364,7 +363,7 @@ export default function SummaryDetailPage() {
           {summary.eli5_summary ? (
             <Card>
               <CardHeader>
-                <CardTitle>Explain Like I'm 5</CardTitle>
+                <CardTitle>Explain Like I&apos;m 5</CardTitle>
                 <CardDescription>
                   A simplified explanation of the research paper
                 </CardDescription>
