@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,12 +9,40 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { FileText, Settings, LogOut, User, CreditCard } from "lucide-react"
+import { FileText, Settings, LogOut, User } from "lucide-react"
+import { useEffect, useState } from "react"
 
 export function DashboardHeader() {
+  const [userName, setUserName] = useState<string>("")
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const token = localStorage.getItem("access_token")
+        if (!token) return
+
+        const res = await fetch("http://localhost:8000/auth/me", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+
+        if (res.ok) {
+          const data = await res.json()
+          setUserName(data.full_name) // assuming UserRead schema has a 'name' field
+        }
+      } catch (err) {
+        console.error("Error fetching user", err)
+      }
+    }
+
+    fetchUser()
+  }, [])
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container mx-auto flex h-16 items-center justify-between">
         <Link href="/dashboard" className="flex items-center space-x-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
             <FileText className="h-5 w-5 text-primary-foreground" />
@@ -24,41 +51,17 @@ export function DashboardHeader() {
         </Link>
 
         <div className="flex items-center space-x-4">
-          <div className="hidden sm:flex items-center space-x-2 text-sm text-muted-foreground">
-            <span>Pro Plan</span>
-            <span>•</span>
-            <span>47/100 documents used</span>
-          </div>
+          {/* Just show user name */}
+          <span className="text-sm font-medium">{userName}</span>
 
+          {/* Optional dropdown for log out/settings */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                <Avatar className="h-8 w-8">
-                  <AvatarImage src="/placeholder.svg?height=32&width=32" alt="User" />
-                  <AvatarFallback>JD</AvatarFallback>
-                </Avatar>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <User className="h-5 w-5" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56" align="end" forceMount>
-              <div className="flex items-center justify-start gap-2 p-2">
-                <div className="flex flex-col space-y-1 leading-none">
-                  <p className="font-medium">John Doe</p>
-                  <p className="w-[200px] truncate text-sm text-muted-foreground">john@example.com</p>
-                </div>
-              </div>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link href="/profile">
-                  <User className="mr-2 h-4 w-4" />
-                  Profile
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/billing">
-                  <CreditCard className="mr-2 h-4 w-4" />
-                  Billing
-                </Link>
-              </DropdownMenuItem>
+            <DropdownMenuContent className="w-40" align="end">
               <DropdownMenuItem asChild>
                 <Link href="/settings">
                   <Settings className="mr-2 h-4 w-4" />

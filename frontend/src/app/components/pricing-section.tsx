@@ -8,7 +8,7 @@ const plans = [
     name: "Free",
     price: "$0",
     description: "Perfect for trying out Flash Digest",
-    features: ["5 documents per month", "Basic summaries", "Standard citations", "Email support"],
+    features: ["5 research papers per month", "Basic summaries", "Standard citations", "Email support"],
     cta: "Get Started",
     popular: false,
   },
@@ -17,9 +17,9 @@ const plans = [
     price: "$19",
     description: "Ideal for students and researchers",
     features: [
-      "100 documents per month",
-      "Advanced summaries",
-      "Multiple citation formats",
+      "100 research papers per month",
+      "Advanced academic summaries",
+      "Multiple citation formats (APA, MLA, Chicago)",
       "Priority support",
       "Export to multiple formats",
       "Collaboration features",
@@ -30,9 +30,9 @@ const plans = [
   {
     name: "Enterprise",
     price: "Custom",
-    description: "For teams and organizations",
+    description: "For academic institutions and research teams",
     features: [
-      "Unlimited documents",
+      "Unlimited research papers",
       "Custom AI models",
       "API access",
       "Dedicated support",
@@ -49,10 +49,10 @@ const plans = [
 export function PricingSection() {
   return (
     <section id="pricing" className="py-20">
-      <div className="container">
+      <div className="container mx-auto">
         <div className="mx-auto max-w-2xl text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Simple, Transparent Pricing</h2>
-          <p className="text-lg text-muted-foreground">Choose the plan that fits your research needs</p>
+          <p className="text-lg text-muted-foreground">Choose the plan that fits your academic research needs</p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">

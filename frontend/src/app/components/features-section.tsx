@@ -1,50 +1,50 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { FileText, LinkIcon, Quote, Zap, Shield, Clock } from "lucide-react"
+import { FileText, LinkIcon, Quote, Zap, Shield, Clock, GraduationCap, BookOpen } from "lucide-react"
 
 const features = [
   {
     icon: FileText,
-    title: "PDF Processing",
+    title: "Research Paper Processing",
     description:
-      "Upload any PDF document and get instant AI-powered summaries with key insights extracted automatically.",
+      "Upload any research paper PDF and get instant AI-powered summaries with key insights, methodology, and findings extracted automatically.",
   },
   {
     icon: LinkIcon,
-    title: "Link Analysis",
+    title: "Academic Article Analysis",
     description:
-      "Paste any web link and receive comprehensive summaries of articles, research papers, and web content.",
+      "Paste any academic article link and receive comprehensive summaries of research papers, journal articles, and scholarly content.",
   },
   {
     icon: Quote,
-    title: "Smart Citations",
+    title: "Academic Citations",
     description:
-      "Automatically generate properly formatted citations and references for academic and professional use.",
+      "Automatically generate properly formatted citations and references in APA, MLA, Chicago, and other academic formats.",
   },
   {
     icon: Zap,
     title: "Lightning Fast",
-    description: "Get results in seconds, not hours. Our AI processes documents and links at incredible speed.",
+    description: "Get research summaries in seconds, not hours. Our AI processes academic documents at incredible speed.",
   },
   {
     icon: Shield,
     title: "Secure & Private",
-    description: "Your documents are processed securely and never stored permanently. Complete privacy guaranteed.",
+    description: "Your research documents are processed securely and never stored permanently. Complete privacy guaranteed.",
   },
   {
     icon: Clock,
-    title: "Save Time",
-    description: "Reduce research time by 90%. Focus on analysis instead of reading through lengthy documents.",
+    title: "Save Research Time",
+    description: "Reduce literature review time by 90%. Focus on analysis instead of reading through lengthy research papers.",
   },
 ]
 
 export function FeaturesSection() {
   return (
     <section id="features" className="py-20  bg-muted/30">
-      <div className="container">
+      <div className="container mx-auto">
         <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Powerful Features for Modern Research</h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Powerful Features for Academic Research</h2>
           <p className="text-lg text-muted-foreground">
-            Everything you need to streamline your research and content analysis workflow
+            Everything you need to streamline your research and academic content analysis workflow
           </p>
         </div>
 

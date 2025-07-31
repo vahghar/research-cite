@@ -4,7 +4,7 @@ import { FileText } from "lucide-react"
 export function Footer() {
   return (
     <footer className="border-t bg-background">
-      <div className="container py-12">
+      <div className="container py-12 mx-auto">
         <div className="grid gap-8 md:grid-cols-4">
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
@@ -14,7 +14,7 @@ export function Footer() {
               <span className="text-xl font-bold">Flash Digest</span>
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">
-              Transform your research workflow with AI-powered summaries, references, and citations.
+              Transform your academic research workflow with AI-powered summaries of research papers, references, and citations.
             </p>
           </div>
 

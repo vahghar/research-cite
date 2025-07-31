@@ -125,7 +125,7 @@ export function FileUploadSection({ onUploadComplete }: FileUploadSectionProps) 
             <CardHeader>
                 <CardTitle>Upload Research Papers</CardTitle>
                 <CardDescription>
-                    Upload PDF files of research papers to get AI-powered summaries and references
+                    Upload PDF files of research papers, academic articles, or scholarly documents to get AI-powered summaries and references
                 </CardDescription>
             </CardHeader>
 
@@ -134,12 +134,12 @@ export function FileUploadSection({ onUploadComplete }: FileUploadSectionProps) 
                     onDragOver={handleDragOver}
                     onDragLeave={handleDragLeave}
                     onDrop={handleDrop}
-                    className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer
+                    className={`relative  border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer
             ${isDragOver ? "border-primary bg-primary/5" : "border-muted-foreground/25 hover:border-muted-foreground/50"}`}
                 >
                     <Upload className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
                     <div className="space-y-2">
-                        <p className="text-lg font-medium">Drop your PDF files here</p>
+                        <p className="text-lg font-medium">Drop your research papers here</p>
                         <p className="text-sm text-muted-foreground">or click to browse</p>
                     </div>
                     <input

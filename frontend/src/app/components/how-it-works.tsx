@@ -1,31 +1,31 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { Upload, Brain, FileCheck } from "lucide-react"
+import { Upload, Brain, FileCheck, GraduationCap } from "lucide-react"
 
 const steps = [
   {
     icon: Upload,
-    title: "Upload or Paste",
-    description: "Simply upload your PDF file or paste a link to any web content you want to analyze.",
+    title: "Upload Research Papers",
+    description: "Simply upload your research paper PDF or paste a link to any academic article you want to analyze.",
   },
   {
     icon: Brain,
-    title: "AI Processing",
-    description: "Our advanced AI analyzes the content, extracting key information and insights automatically.",
+    title: "AI Analysis",
+    description: "Our advanced AI analyzes the academic content, extracting key findings, methodology, and insights automatically.",
   },
   {
     icon: FileCheck,
-    title: "Get Results",
-    description: "Receive a comprehensive summary with references, citations, and key takeaways in seconds.",
+    title: "Get Academic Summary",
+    description: "Receive a comprehensive research summary with proper citations, references, and key academic insights in seconds.",
   },
 ]
 
 export function HowItWorksSection() {
   return (
     <section id="how-it-works" className="py-20">
-      <div className="container">
+      <div className="container mx-auto">
         <div className="mx-auto max-w-2xl text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">How Flash Digest Works</h2>
-          <p className="text-lg text-muted-foreground">Get from content to insights in just three simple steps</p>
+          <p className="text-lg text-muted-foreground">Get from research paper to insights in just three simple steps</p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3">
@@ -43,7 +43,7 @@ export function HowItWorksSection() {
 
               {/* Connector Arrow */}
               {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+                <div className="hidden md:block absolute top-1/2 right-[-40px] transform -translate-y-1/2">
                   <div className="w-8 h-0.5 bg-border"></div>
                   <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-border border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
                 </div>
