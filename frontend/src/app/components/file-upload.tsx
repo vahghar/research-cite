@@ -41,7 +41,7 @@ export function FileUploadSection({ onUploadComplete }: FileUploadSectionProps) 
         const token = localStorage.getItem("access_token")
     
         try {
-            const resp = await fetch("http://localhost:8000/documents", {
+            const resp = await fetch("https://research-cite.onrender.com/documents", {
                 method: "POST",
                 body: formData,
                 headers: {

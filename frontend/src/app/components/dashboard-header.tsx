@@ -21,7 +21,7 @@ export function DashboardHeader() {
         const token = localStorage.getItem("access_token")
         if (!token) return
 
-        const res = await fetch("http://localhost:8000/auth/me", {
+        const res = await fetch("https://research-cite.onrender.com/auth/me", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,

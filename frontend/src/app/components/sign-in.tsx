@@ -34,7 +34,7 @@ export default function LoginForm() {
         setIsLoading(true)
 
         try {
-            const response = await fetch("http://localhost:8000/auth/login", {
+            const response = await fetch("https://research-cite.onrender.com/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

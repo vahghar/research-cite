@@ -36,7 +36,7 @@ export default function SignupForm() {
         setIsLoading(true)
 
         try {
-            const response = await fetch("http://localhost:8000/auth/signup", {
+            const response = await fetch("https://research-cite.onrender.com/auth/signup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

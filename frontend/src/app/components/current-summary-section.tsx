@@ -38,7 +38,7 @@ export function CurrentSummarySection({ documentId }: { documentId: number }) {
         if (!documentId) return;
 
         const token = localStorage.getItem("access_token");
-        fetch(`http://localhost:8000/documents/${documentId}/summary`, {
+        fetch(`https://research-cite.onrender.com/documents/${documentId}/summary`, {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then(async (res) => {
@@ -61,7 +61,7 @@ export function CurrentSummarySection({ documentId }: { documentId: number }) {
         setRecError(null);
         setRecommendations(null);
         const token = localStorage.getItem("access_token");
-        fetch(`http://localhost:8000/documents/${documentId}/recommendations`, {
+        fetch(`https://research-cite.onrender.com/documents/${documentId}/recommendations`, {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then(async (res) => {
@@ -84,7 +84,7 @@ export function CurrentSummarySection({ documentId }: { documentId: number }) {
         setGeneratingEli5(true);
         try {
             const token = localStorage.getItem("access_token");
-            const response = await fetch(`http://localhost:8000/documents/${documentId}/eli5`, {
+            const response = await fetch(`https://research-cite.onrender.com/documents/${documentId}/eli5`, {
                 method: "POST",
                 headers: { Authorization: `Bearer ${token}` },
             });

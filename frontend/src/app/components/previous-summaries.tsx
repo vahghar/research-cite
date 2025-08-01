@@ -24,7 +24,7 @@ export function PreviousSummariesSection() {
       try {
         setLoading(true)
         const token = localStorage.getItem("access_token") // assuming you store JWT in localStorage
-        const response = await fetch("http://localhost:8000/documents/", {
+        const response = await fetch("https://research-cite.onrender.com/documents/", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -39,7 +39,7 @@ export function PreviousSummariesSection() {
             let summaryText = ""
             if (doc.status === "COMPLETED") {
               try {
-                const summaryResponse = await fetch(`http://localhost:8000/documents/${doc.id}/summary`, {
+                const summaryResponse = await fetch(`https://research-cite.onrender.com/documents/${doc.id}/summary`, {
                   method: "GET",
                   headers: { Authorization: `Bearer ${token}` },
                 })
@@ -105,7 +105,7 @@ export function PreviousSummariesSection() {
         return
       }
 
-      const response = await fetch(`http://localhost:8000/documents/${docId}`, {
+              const response = await fetch(`https://research-cite.onrender.com/documents/${docId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

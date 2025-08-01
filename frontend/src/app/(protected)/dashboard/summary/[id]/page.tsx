@@ -62,7 +62,7 @@ export default function SummaryDetailPage() {
         }
 
         // Fetch document details
-        const docResponse = await fetch(`http://localhost:8000/documents/${documentId}`, {
+        const docResponse = await fetch(`https://research-cite.onrender.com/documents/${documentId}`, {
           headers: { Authorization: `Bearer ${token}` },
         })
 
@@ -74,7 +74,7 @@ export default function SummaryDetailPage() {
         setDocument(docData)
 
         // Fetch summary
-        const summaryResponse = await fetch(`http://localhost:8000/documents/${documentId}/summary`, {
+        const summaryResponse = await fetch(`https://research-cite.onrender.com/documents/${documentId}/summary`, {
           headers: { Authorization: `Bearer ${token}` },
         })
 
@@ -86,7 +86,7 @@ export default function SummaryDetailPage() {
         setSummary(summaryData)
 
         // Fetch citations
-        const citationsResponse = await fetch(`http://localhost:8000/documents/${documentId}/citations`, {
+        const citationsResponse = await fetch(`https://research-cite.onrender.com/documents/${documentId}/citations`, {
           headers: { Authorization: `Bearer ${token}` },
         })
 
@@ -110,7 +110,7 @@ export default function SummaryDetailPage() {
   const handleGenerateELI5 = async () => {
     try {
       const token = localStorage.getItem("access_token")
-      const response = await fetch(`http://localhost:8000/documents/${documentId}/eli5`, {
+              const response = await fetch(`https://research-cite.onrender.com/documents/${documentId}/eli5`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
       })
